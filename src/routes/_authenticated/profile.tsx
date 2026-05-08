@@ -11,7 +11,7 @@ export const Route = createFileRoute("/_authenticated/profile")({
 });
 
 function ProfilePage() {
-  const { user, role } = useAuth();
+  const { user, activeRole: role } = useAuth();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [form, setForm] = useState({ full_name: "", headline: "", bio: "", location: "" });

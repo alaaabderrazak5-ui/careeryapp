@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 });
 
 function Dashboard() {
-  const { user, role } = useAuth();
+  const { user, activeRole: role } = useAuth();
   const name = user?.email?.split("@")[0] ?? "there";
 
   return (
