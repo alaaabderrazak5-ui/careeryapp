@@ -9,15 +9,14 @@ export const Route = createFileRoute("/_authenticated")({
 
 function AuthLayout() {
   const navigate = useNavigate();
-  const { user, loading, role, signOut } = useAuth();
+  const { user, loading, activeRole, signOut } = useAuth();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/auth" });
-    if (!loading && user && !role) navigate({ to: "/onboarding" });
-  }, [loading, user, role, navigate]);
+  }, [loading, user, navigate]);
 
-  if (loading || !user || !role) {
+  if (loading || !user) {
     return <div className="grid min-h-screen place-items-center bg-background text-muted-foreground">Loading…</div>;
   }
 
