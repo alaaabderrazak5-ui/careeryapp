@@ -49,7 +49,7 @@ function AuthLayout() {
         <div className="border-t border-border p-3">
           <div className="rounded-xl bg-secondary px-3 py-2 text-xs">
             <p className="font-semibold text-foreground">{user.email}</p>
-            <p className="mt-0.5 text-muted-foreground capitalize">{role.replace("_", " ")}</p>
+            <p className="mt-0.5 text-muted-foreground capitalize">{activeRole ? activeRole.replace("_", " ") : "No role yet"}</p>
           </div>
           <button onClick={() => signOut()} className="mt-2 flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm text-muted-foreground transition hover:bg-secondary hover:text-foreground">
             <LogOut className="h-4 w-4" /> Sign out
