@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useAuth } from "@/lib/auth-context";
 import { Sparkles } from "lucide-react";
+import { RoleSwitcher } from "@/components/role-switcher";
 
 export function SiteHeader() {
   const { user, signOut } = useAuth();
@@ -14,14 +15,13 @@ export function SiteHeader() {
           <span className="font-display text-lg tracking-tight">CAREERY</span>
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
-          <a href="/#features" className="transition hover:text-foreground">Features</a>
-          <a href="/#how" className="transition hover:text-foreground">How it works</a>
-          <a href="/#stats" className="transition hover:text-foreground">Impact</a>
+          <Link to="/" className="transition hover:text-foreground">Home</Link>
+          {user && <Link to="/dashboard" className="transition hover:text-foreground">Dashboard</Link>}
         </nav>
         <div className="flex items-center gap-2">
           {user ? (
             <>
-              <Link to="/dashboard" className="rounded-full px-4 py-2 text-sm font-semibold text-foreground hover:bg-secondary">Dashboard</Link>
+              <RoleSwitcher />
               <button onClick={() => signOut()} className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background hover:opacity-90">Sign out</button>
             </>
           ) : (
@@ -43,13 +43,6 @@ export function SiteFooter() {
         <div>
           <p className="font-display text-2xl">CAREERY</p>
           <p className="mt-1 text-sm text-muted-foreground">AI-powered career & recruitment ecosystem</p>
-        </div>
-        <div className="flex flex-wrap gap-6 text-sm text-muted-foreground">
-          <a href="#" className="hover:text-foreground">About</a>
-          <a href="#" className="hover:text-foreground">Contact</a>
-          <a href="#" className="hover:text-foreground">FAQ</a>
-          <a href="#" className="hover:text-foreground">Privacy</a>
-          <a href="#" className="hover:text-foreground">Terms</a>
         </div>
         <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} CAREERY</p>
       </div>
