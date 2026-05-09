@@ -22,6 +22,7 @@ import { Route as AuthenticatedSettingsSkillsRouteImport } from './routes/_authe
 import { Route as AuthenticatedSettingsRolesRouteImport } from './routes/_authenticated/settings/roles'
 import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
 import { Route as AuthenticatedSettingsLanguagesRouteImport } from './routes/_authenticated/settings/languages'
+import { Route as AuthenticatedSettingsInterestsRouteImport } from './routes/_authenticated/settings/interests'
 import { Route as AuthenticatedSettingsExperienceRouteImport } from './routes/_authenticated/settings/experience'
 import { Route as AuthenticatedSettingsEducationRouteImport } from './routes/_authenticated/settings/education'
 import { Route as AuthenticatedSettingsCertificationsRouteImport } from './routes/_authenticated/settings/certifications'
@@ -95,6 +96,12 @@ const AuthenticatedSettingsLanguagesRoute =
     path: '/languages',
     getParentRoute: () => AuthenticatedSettingsRoute,
   } as any)
+const AuthenticatedSettingsInterestsRoute =
+  AuthenticatedSettingsInterestsRouteImport.update({
+    id: '/interests',
+    path: '/interests',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
 const AuthenticatedSettingsExperienceRoute =
   AuthenticatedSettingsExperienceRouteImport.update({
     id: '/experience',
@@ -125,6 +132,7 @@ export interface FileRoutesByFullPath {
   '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
+  '/settings/interests': typeof AuthenticatedSettingsInterestsRoute
   '/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
@@ -141,6 +149,7 @@ export interface FileRoutesByTo {
   '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
+  '/settings/interests': typeof AuthenticatedSettingsInterestsRoute
   '/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
@@ -160,6 +169,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/_authenticated/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/_authenticated/settings/experience': typeof AuthenticatedSettingsExperienceRoute
+  '/_authenticated/settings/interests': typeof AuthenticatedSettingsInterestsRoute
   '/_authenticated/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
   '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/_authenticated/settings/roles': typeof AuthenticatedSettingsRolesRoute
@@ -179,6 +189,7 @@ export interface FileRouteTypes {
     | '/settings/certifications'
     | '/settings/education'
     | '/settings/experience'
+    | '/settings/interests'
     | '/settings/languages'
     | '/settings/profile'
     | '/settings/roles'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/settings/certifications'
     | '/settings/education'
     | '/settings/experience'
+    | '/settings/interests'
     | '/settings/languages'
     | '/settings/profile'
     | '/settings/roles'
@@ -213,6 +225,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/certifications'
     | '/_authenticated/settings/education'
     | '/_authenticated/settings/experience'
+    | '/_authenticated/settings/interests'
     | '/_authenticated/settings/languages'
     | '/_authenticated/settings/profile'
     | '/_authenticated/settings/roles'
@@ -320,6 +333,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsLanguagesRouteImport
       parentRoute: typeof AuthenticatedSettingsRoute
     }
+    '/_authenticated/settings/interests': {
+      id: '/_authenticated/settings/interests'
+      path: '/interests'
+      fullPath: '/settings/interests'
+      preLoaderRoute: typeof AuthenticatedSettingsInterestsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
     '/_authenticated/settings/experience': {
       id: '/_authenticated/settings/experience'
       path: '/experience'
@@ -348,6 +368,7 @@ interface AuthenticatedSettingsRouteChildren {
   AuthenticatedSettingsCertificationsRoute: typeof AuthenticatedSettingsCertificationsRoute
   AuthenticatedSettingsEducationRoute: typeof AuthenticatedSettingsEducationRoute
   AuthenticatedSettingsExperienceRoute: typeof AuthenticatedSettingsExperienceRoute
+  AuthenticatedSettingsInterestsRoute: typeof AuthenticatedSettingsInterestsRoute
   AuthenticatedSettingsLanguagesRoute: typeof AuthenticatedSettingsLanguagesRoute
   AuthenticatedSettingsProfileRoute: typeof AuthenticatedSettingsProfileRoute
   AuthenticatedSettingsRolesRoute: typeof AuthenticatedSettingsRolesRoute
@@ -360,6 +381,7 @@ const AuthenticatedSettingsRouteChildren: AuthenticatedSettingsRouteChildren = {
     AuthenticatedSettingsCertificationsRoute,
   AuthenticatedSettingsEducationRoute: AuthenticatedSettingsEducationRoute,
   AuthenticatedSettingsExperienceRoute: AuthenticatedSettingsExperienceRoute,
+  AuthenticatedSettingsInterestsRoute: AuthenticatedSettingsInterestsRoute,
   AuthenticatedSettingsLanguagesRoute: AuthenticatedSettingsLanguagesRoute,
   AuthenticatedSettingsProfileRoute: AuthenticatedSettingsProfileRoute,
   AuthenticatedSettingsRolesRoute: AuthenticatedSettingsRolesRoute,
