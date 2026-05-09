@@ -23,6 +23,7 @@ import { Route as AuthenticatedSettingsRolesRouteImport } from './routes/_authen
 import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
 import { Route as AuthenticatedSettingsExperienceRouteImport } from './routes/_authenticated/settings/experience'
 import { Route as AuthenticatedSettingsEducationRouteImport } from './routes/_authenticated/settings/education'
+import { Route as AuthenticatedSettingsCertificationsRouteImport } from './routes/_authenticated/settings/certifications'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -99,6 +100,12 @@ const AuthenticatedSettingsEducationRoute =
     path: '/education',
     getParentRoute: () => AuthenticatedSettingsRoute,
   } as any)
+const AuthenticatedSettingsCertificationsRoute =
+  AuthenticatedSettingsCertificationsRouteImport.update({
+    id: '/certifications',
+    path: '/certifications',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
@@ -122,6 +130,7 @@ export interface FileRoutesByTo {
   '/advisor': typeof AuthenticatedAdvisorRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
@@ -139,6 +148,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/_authenticated/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/_authenticated/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/_authenticated/settings/experience': typeof AuthenticatedSettingsExperienceRoute
   '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
@@ -156,6 +166,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/profile'
     | '/settings'
+    | '/settings/certifications'
     | '/settings/education'
     | '/settings/experience'
     | '/settings/profile'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
     | '/advisor'
     | '/dashboard'
     | '/profile'
+    | '/settings/certifications'
     | '/settings/education'
     | '/settings/experience'
     | '/settings/profile'
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard'
     | '/_authenticated/profile'
     | '/_authenticated/settings'
+    | '/_authenticated/settings/certifications'
     | '/_authenticated/settings/education'
     | '/_authenticated/settings/experience'
     | '/_authenticated/settings/profile'
@@ -301,10 +314,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsEducationRouteImport
       parentRoute: typeof AuthenticatedSettingsRoute
     }
+    '/_authenticated/settings/certifications': {
+      id: '/_authenticated/settings/certifications'
+      path: '/certifications'
+      fullPath: '/settings/certifications'
+      preLoaderRoute: typeof AuthenticatedSettingsCertificationsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
   }
 }
 
 interface AuthenticatedSettingsRouteChildren {
+  AuthenticatedSettingsCertificationsRoute: typeof AuthenticatedSettingsCertificationsRoute
   AuthenticatedSettingsEducationRoute: typeof AuthenticatedSettingsEducationRoute
   AuthenticatedSettingsExperienceRoute: typeof AuthenticatedSettingsExperienceRoute
   AuthenticatedSettingsProfileRoute: typeof AuthenticatedSettingsProfileRoute
@@ -314,6 +335,8 @@ interface AuthenticatedSettingsRouteChildren {
 }
 
 const AuthenticatedSettingsRouteChildren: AuthenticatedSettingsRouteChildren = {
+  AuthenticatedSettingsCertificationsRoute:
+    AuthenticatedSettingsCertificationsRoute,
   AuthenticatedSettingsEducationRoute: AuthenticatedSettingsEducationRoute,
   AuthenticatedSettingsExperienceRoute: AuthenticatedSettingsExperienceRoute,
   AuthenticatedSettingsProfileRoute: AuthenticatedSettingsProfileRoute,
