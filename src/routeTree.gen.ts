@@ -19,6 +19,7 @@ import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticat
 import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedApplicationsRouteImport } from './routes/_authenticated/applications'
 import { Route as AuthenticatedAdvisorRouteImport } from './routes/_authenticated/advisor'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedSettingsSkillsRouteImport } from './routes/_authenticated/settings/skills'
@@ -80,6 +81,12 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedApplicationsRoute =
+  AuthenticatedApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedAdvisorRoute = AuthenticatedAdvisorRouteImport.update({
   id: '/advisor',
   path: '/advisor',
@@ -152,6 +159,7 @@ export interface FileRoutesByFullPath {
   '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/advisor': typeof AuthenticatedAdvisorRoute
+  '/applications': typeof AuthenticatedApplicationsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
@@ -174,6 +182,7 @@ export interface FileRoutesByTo {
   '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/advisor': typeof AuthenticatedAdvisorRoute
+  '/applications': typeof AuthenticatedApplicationsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
@@ -197,6 +206,7 @@ export interface FileRoutesById {
   '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/_authenticated/advisor': typeof AuthenticatedAdvisorRoute
+  '/_authenticated/applications': typeof AuthenticatedApplicationsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/quiz': typeof AuthenticatedQuizRoute
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/onboarding'
     | '/advisor'
+    | '/applications'
     | '/dashboard'
     | '/profile'
     | '/quiz'
@@ -243,6 +254,7 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/onboarding'
     | '/advisor'
+    | '/applications'
     | '/dashboard'
     | '/profile'
     | '/quiz'
@@ -265,6 +277,7 @@ export interface FileRouteTypes {
     | '/jobs'
     | '/onboarding'
     | '/_authenticated/advisor'
+    | '/_authenticated/applications'
     | '/_authenticated/dashboard'
     | '/_authenticated/profile'
     | '/_authenticated/quiz'
@@ -360,6 +373,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/applications': {
+      id: '/_authenticated/applications'
+      path: '/applications'
+      fullPath: '/applications'
+      preLoaderRoute: typeof AuthenticatedApplicationsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/advisor': {
@@ -476,6 +496,7 @@ const AuthenticatedSettingsRouteWithChildren =
 
 interface AuthenticatedRouteChildren {
   AuthenticatedAdvisorRoute: typeof AuthenticatedAdvisorRoute
+  AuthenticatedApplicationsRoute: typeof AuthenticatedApplicationsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
   AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
@@ -484,6 +505,7 @@ interface AuthenticatedRouteChildren {
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedAdvisorRoute: AuthenticatedAdvisorRoute,
+  AuthenticatedApplicationsRoute: AuthenticatedApplicationsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
   AuthenticatedQuizRoute: AuthenticatedQuizRoute,
