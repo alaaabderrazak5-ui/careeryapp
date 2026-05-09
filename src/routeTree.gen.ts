@@ -33,6 +33,7 @@ import { Route as AuthenticatedSettingsInterestsRouteImport } from './routes/_au
 import { Route as AuthenticatedSettingsExperienceRouteImport } from './routes/_authenticated/settings/experience'
 import { Route as AuthenticatedSettingsEducationRouteImport } from './routes/_authenticated/settings/education'
 import { Route as AuthenticatedSettingsCertificationsRouteImport } from './routes/_authenticated/settings/certifications'
+import { Route as AuthenticatedEmployerJobsRouteImport } from './routes/_authenticated/employer/jobs'
 import { Route as AuthenticatedEmployerCompanyRouteImport } from './routes/_authenticated/employer/company'
 
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -166,6 +167,12 @@ const AuthenticatedSettingsCertificationsRoute =
     path: '/certifications',
     getParentRoute: () => AuthenticatedSettingsRoute,
   } as any)
+const AuthenticatedEmployerJobsRoute =
+  AuthenticatedEmployerJobsRouteImport.update({
+    id: '/jobs',
+    path: '/jobs',
+    getParentRoute: () => AuthenticatedEmployerRoute,
+  } as any)
 const AuthenticatedEmployerCompanyRoute =
   AuthenticatedEmployerCompanyRouteImport.update({
     id: '/company',
@@ -187,6 +194,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/jobs/$jobId': typeof JobsJobIdRoute
   '/employer/company': typeof AuthenticatedEmployerCompanyRoute
+  '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
   '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
@@ -211,6 +219,7 @@ export interface FileRoutesByTo {
   '/quiz': typeof AuthenticatedQuizRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
   '/employer/company': typeof AuthenticatedEmployerCompanyRoute
+  '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
   '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
@@ -239,6 +248,7 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/jobs/$jobId': typeof JobsJobIdRoute
   '/_authenticated/employer/company': typeof AuthenticatedEmployerCompanyRoute
+  '/_authenticated/employer/jobs': typeof AuthenticatedEmployerJobsRoute
   '/_authenticated/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
   '/_authenticated/settings/education': typeof AuthenticatedSettingsEducationRoute
   '/_authenticated/settings/experience': typeof AuthenticatedSettingsExperienceRoute
@@ -267,6 +277,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/jobs/$jobId'
     | '/employer/company'
+    | '/employer/jobs'
     | '/settings/certifications'
     | '/settings/education'
     | '/settings/experience'
@@ -291,6 +302,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/jobs/$jobId'
     | '/employer/company'
+    | '/employer/jobs'
     | '/settings/certifications'
     | '/settings/education'
     | '/settings/experience'
@@ -318,6 +330,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/jobs/$jobId'
     | '/_authenticated/employer/company'
+    | '/_authenticated/employer/jobs'
     | '/_authenticated/settings/certifications'
     | '/_authenticated/settings/education'
     | '/_authenticated/settings/experience'
@@ -509,6 +522,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsCertificationsRouteImport
       parentRoute: typeof AuthenticatedSettingsRoute
     }
+    '/_authenticated/employer/jobs': {
+      id: '/_authenticated/employer/jobs'
+      path: '/jobs'
+      fullPath: '/employer/jobs'
+      preLoaderRoute: typeof AuthenticatedEmployerJobsRouteImport
+      parentRoute: typeof AuthenticatedEmployerRoute
+    }
     '/_authenticated/employer/company': {
       id: '/_authenticated/employer/company'
       path: '/company'
@@ -521,11 +541,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedEmployerRouteChildren {
   AuthenticatedEmployerCompanyRoute: typeof AuthenticatedEmployerCompanyRoute
+  AuthenticatedEmployerJobsRoute: typeof AuthenticatedEmployerJobsRoute
   AuthenticatedEmployerIndexRoute: typeof AuthenticatedEmployerIndexRoute
 }
 
 const AuthenticatedEmployerRouteChildren: AuthenticatedEmployerRouteChildren = {
   AuthenticatedEmployerCompanyRoute: AuthenticatedEmployerCompanyRoute,
+  AuthenticatedEmployerJobsRoute: AuthenticatedEmployerJobsRoute,
   AuthenticatedEmployerIndexRoute: AuthenticatedEmployerIndexRoute,
 }
 
