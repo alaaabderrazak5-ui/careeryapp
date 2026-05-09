@@ -16,7 +16,10 @@ export function SiteHeader() {
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium text-muted-foreground md:flex">
           <Link to="/" className="transition hover:text-foreground">Home</Link>
+          <Link to="/jobs" className="transition hover:text-foreground">Jobs</Link>
           {user && <Link to="/dashboard" className="transition hover:text-foreground">Dashboard</Link>}
+          {user && <Link to="/quiz" className="transition hover:text-foreground">Career quiz</Link>}
+          {user && <Link to="/settings/profile" className="transition hover:text-foreground">Settings</Link>}
         </nav>
         <div className="flex items-center gap-2">
           {user ? (
