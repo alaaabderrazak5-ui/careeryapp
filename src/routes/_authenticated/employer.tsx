@@ -19,7 +19,7 @@ function EmployerLayout() {
         {NAV.map(({ to, label, icon: Icon, exact }) => {
           const active = exact ? loc.pathname === to : loc.pathname.startsWith(to);
           return (
-            <Link key={to} to={to} className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${active ? "bg-foreground text-background" : "hover:bg-secondary"}`}>
+            <Link key={to} to={to as any} className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${active ? "bg-foreground text-background" : "hover:bg-secondary"}`}>
               <Icon className="h-4 w-4" /> {label}
             </Link>
           );
