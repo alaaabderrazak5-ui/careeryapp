@@ -14,6 +14,33 @@ export type Database = {
   }
   public: {
     Tables: {
+      application_events: {
+        Row: {
+          actor_id: string | null
+          application_id: string
+          created_at: string
+          event_type: string
+          id: string
+          note: string | null
+        }
+        Insert: {
+          actor_id?: string | null
+          application_id: string
+          created_at?: string
+          event_type: string
+          id?: string
+          note?: string | null
+        }
+        Update: {
+          actor_id?: string | null
+          application_id?: string
+          created_at?: string
+          event_type?: string
+          id?: string
+          note?: string | null
+        }
+        Relationships: []
+      }
       applications: {
         Row: {
           applied_at: string
@@ -81,6 +108,45 @@ export type Database = {
           id?: string
           target_role?: string | null
           timeline?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      career_quiz_results: {
+        Row: {
+          answers: Json
+          created_at: string
+          description: string | null
+          id: string
+          personality_type: string | null
+          recommended_careers: string[] | null
+          recommended_companies: string[] | null
+          score: number
+          skills_to_improve: string[] | null
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          description?: string | null
+          id?: string
+          personality_type?: string | null
+          recommended_careers?: string[] | null
+          recommended_companies?: string[] | null
+          score?: number
+          skills_to_improve?: string[] | null
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          description?: string | null
+          id?: string
+          personality_type?: string | null
+          recommended_careers?: string[] | null
+          recommended_companies?: string[] | null
+          score?: number
+          skills_to_improve?: string[] | null
           user_id?: string
         }
         Relationships: []

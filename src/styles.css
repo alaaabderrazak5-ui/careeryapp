@@ -164,3 +164,35 @@
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+
+@layer components {
+  .input {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid hsl(var(--border, 0 0% 90%));
+    background: var(--card, white);
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    outline: none;
+    transition: box-shadow 0.15s, border-color 0.15s;
+  }
+  .input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--primary) 15%, transparent);
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border-radius: 9999px;
+    background: var(--foreground); color: var(--background);
+    padding: 0.625rem 1.25rem; font-size: 0.875rem; font-weight: 600;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-primary:disabled { opacity: 0.5; }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border-radius: 9999px; border: 1px solid var(--border);
+    padding: 0.5rem 1rem; font-size: 0.875rem;
+  }
+  .btn-ghost:hover { background: var(--secondary); }
+}

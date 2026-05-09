@@ -10,17 +10,41 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedEmployerRouteImport } from './routes/_authenticated/employer'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedApplicationsRouteImport } from './routes/_authenticated/applications'
 import { Route as AuthenticatedAdvisorRouteImport } from './routes/_authenticated/advisor'
+import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedEmployerIndexRouteImport } from './routes/_authenticated/employer/index'
+import { Route as AuthenticatedSettingsSkillsRouteImport } from './routes/_authenticated/settings/skills'
 import { Route as AuthenticatedSettingsRolesRouteImport } from './routes/_authenticated/settings/roles'
+import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
+import { Route as AuthenticatedSettingsPortfolioRouteImport } from './routes/_authenticated/settings/portfolio'
+import { Route as AuthenticatedSettingsLanguagesRouteImport } from './routes/_authenticated/settings/languages'
+import { Route as AuthenticatedSettingsInterestsRouteImport } from './routes/_authenticated/settings/interests'
+import { Route as AuthenticatedSettingsExperienceRouteImport } from './routes/_authenticated/settings/experience'
+import { Route as AuthenticatedSettingsEducationRouteImport } from './routes/_authenticated/settings/education'
+import { Route as AuthenticatedSettingsCertificationsRouteImport } from './routes/_authenticated/settings/certifications'
+import { Route as AuthenticatedEmployerJobsRouteImport } from './routes/_authenticated/employer/jobs'
+import { Route as AuthenticatedEmployerCompanyRouteImport } from './routes/_authenticated/employer/company'
+import { Route as AuthenticatedEmployerApplicantsRouteImport } from './routes/_authenticated/employer/applicants'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -37,9 +61,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JobsJobIdRoute = JobsJobIdRouteImport.update({
+  id: '/$jobId',
+  path: '/$jobId',
+  getParentRoute: () => JobsRoute,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedQuizRoute = AuthenticatedQuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedEmployerRoute = AuthenticatedEmployerRouteImport.update({
+  id: '/employer',
+  path: '/employer',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
@@ -47,82 +91,277 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedApplicationsRoute =
+  AuthenticatedApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedAdvisorRoute = AuthenticatedAdvisorRouteImport.update({
   id: '/advisor',
   path: '/advisor',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedSettingsIndexRoute =
+  AuthenticatedSettingsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedEmployerIndexRoute =
+  AuthenticatedEmployerIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedEmployerRoute,
+  } as any)
+const AuthenticatedSettingsSkillsRoute =
+  AuthenticatedSettingsSkillsRouteImport.update({
+    id: '/skills',
+    path: '/skills',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
 const AuthenticatedSettingsRolesRoute =
   AuthenticatedSettingsRolesRouteImport.update({
-    id: '/settings/roles',
-    path: '/settings/roles',
-    getParentRoute: () => AuthenticatedRoute,
+    id: '/roles',
+    path: '/roles',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsProfileRoute =
+  AuthenticatedSettingsProfileRouteImport.update({
+    id: '/profile',
+    path: '/profile',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsPortfolioRoute =
+  AuthenticatedSettingsPortfolioRouteImport.update({
+    id: '/portfolio',
+    path: '/portfolio',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsLanguagesRoute =
+  AuthenticatedSettingsLanguagesRouteImport.update({
+    id: '/languages',
+    path: '/languages',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsInterestsRoute =
+  AuthenticatedSettingsInterestsRouteImport.update({
+    id: '/interests',
+    path: '/interests',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsExperienceRoute =
+  AuthenticatedSettingsExperienceRouteImport.update({
+    id: '/experience',
+    path: '/experience',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsEducationRoute =
+  AuthenticatedSettingsEducationRouteImport.update({
+    id: '/education',
+    path: '/education',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedSettingsCertificationsRoute =
+  AuthenticatedSettingsCertificationsRouteImport.update({
+    id: '/certifications',
+    path: '/certifications',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
+const AuthenticatedEmployerJobsRoute =
+  AuthenticatedEmployerJobsRouteImport.update({
+    id: '/jobs',
+    path: '/jobs',
+    getParentRoute: () => AuthenticatedEmployerRoute,
+  } as any)
+const AuthenticatedEmployerCompanyRoute =
+  AuthenticatedEmployerCompanyRouteImport.update({
+    id: '/company',
+    path: '/company',
+    getParentRoute: () => AuthenticatedEmployerRoute,
+  } as any)
+const AuthenticatedEmployerApplicantsRoute =
+  AuthenticatedEmployerApplicantsRouteImport.update({
+    id: '/applicants',
+    path: '/applicants',
+    getParentRoute: () => AuthenticatedEmployerRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/advisor': typeof AuthenticatedAdvisorRoute
+  '/applications': typeof AuthenticatedApplicationsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/employer': typeof AuthenticatedEmployerRouteWithChildren
   '/profile': typeof AuthenticatedProfileRoute
+  '/quiz': typeof AuthenticatedQuizRoute
+  '/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/jobs/$jobId': typeof JobsJobIdRoute
+  '/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
+  '/employer/company': typeof AuthenticatedEmployerCompanyRoute
+  '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
+  '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
+  '/settings/education': typeof AuthenticatedSettingsEducationRoute
+  '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
+  '/settings/interests': typeof AuthenticatedSettingsInterestsRoute
+  '/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
+  '/settings/portfolio': typeof AuthenticatedSettingsPortfolioRoute
+  '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
+  '/settings/skills': typeof AuthenticatedSettingsSkillsRoute
+  '/employer/': typeof AuthenticatedEmployerIndexRoute
+  '/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/advisor': typeof AuthenticatedAdvisorRoute
+  '/applications': typeof AuthenticatedApplicationsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
+  '/quiz': typeof AuthenticatedQuizRoute
+  '/jobs/$jobId': typeof JobsJobIdRoute
+  '/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
+  '/employer/company': typeof AuthenticatedEmployerCompanyRoute
+  '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
+  '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
+  '/settings/education': typeof AuthenticatedSettingsEducationRoute
+  '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
+  '/settings/interests': typeof AuthenticatedSettingsInterestsRoute
+  '/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
+  '/settings/portfolio': typeof AuthenticatedSettingsPortfolioRoute
+  '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
+  '/settings/skills': typeof AuthenticatedSettingsSkillsRoute
+  '/employer': typeof AuthenticatedEmployerIndexRoute
+  '/settings': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/auth': typeof AuthRoute
+  '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
   '/_authenticated/advisor': typeof AuthenticatedAdvisorRoute
+  '/_authenticated/applications': typeof AuthenticatedApplicationsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/employer': typeof AuthenticatedEmployerRouteWithChildren
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/quiz': typeof AuthenticatedQuizRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/jobs/$jobId': typeof JobsJobIdRoute
+  '/_authenticated/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
+  '/_authenticated/employer/company': typeof AuthenticatedEmployerCompanyRoute
+  '/_authenticated/employer/jobs': typeof AuthenticatedEmployerJobsRoute
+  '/_authenticated/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
+  '/_authenticated/settings/education': typeof AuthenticatedSettingsEducationRoute
+  '/_authenticated/settings/experience': typeof AuthenticatedSettingsExperienceRoute
+  '/_authenticated/settings/interests': typeof AuthenticatedSettingsInterestsRoute
+  '/_authenticated/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
+  '/_authenticated/settings/portfolio': typeof AuthenticatedSettingsPortfolioRoute
+  '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/_authenticated/settings/roles': typeof AuthenticatedSettingsRolesRoute
+  '/_authenticated/settings/skills': typeof AuthenticatedSettingsSkillsRoute
+  '/_authenticated/employer/': typeof AuthenticatedEmployerIndexRoute
+  '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/auth'
+    | '/jobs'
     | '/onboarding'
     | '/advisor'
+    | '/applications'
     | '/dashboard'
+    | '/employer'
     | '/profile'
+    | '/quiz'
+    | '/settings'
+    | '/jobs/$jobId'
+    | '/employer/applicants'
+    | '/employer/company'
+    | '/employer/jobs'
+    | '/settings/certifications'
+    | '/settings/education'
+    | '/settings/experience'
+    | '/settings/interests'
+    | '/settings/languages'
+    | '/settings/portfolio'
+    | '/settings/profile'
     | '/settings/roles'
+    | '/settings/skills'
+    | '/employer/'
+    | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
+    | '/jobs'
     | '/onboarding'
     | '/advisor'
+    | '/applications'
     | '/dashboard'
     | '/profile'
+    | '/quiz'
+    | '/jobs/$jobId'
+    | '/employer/applicants'
+    | '/employer/company'
+    | '/employer/jobs'
+    | '/settings/certifications'
+    | '/settings/education'
+    | '/settings/experience'
+    | '/settings/interests'
+    | '/settings/languages'
+    | '/settings/portfolio'
+    | '/settings/profile'
     | '/settings/roles'
+    | '/settings/skills'
+    | '/employer'
+    | '/settings'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/jobs'
     | '/onboarding'
     | '/_authenticated/advisor'
+    | '/_authenticated/applications'
     | '/_authenticated/dashboard'
+    | '/_authenticated/employer'
     | '/_authenticated/profile'
+    | '/_authenticated/quiz'
+    | '/_authenticated/settings'
+    | '/jobs/$jobId'
+    | '/_authenticated/employer/applicants'
+    | '/_authenticated/employer/company'
+    | '/_authenticated/employer/jobs'
+    | '/_authenticated/settings/certifications'
+    | '/_authenticated/settings/education'
+    | '/_authenticated/settings/experience'
+    | '/_authenticated/settings/interests'
+    | '/_authenticated/settings/languages'
+    | '/_authenticated/settings/portfolio'
+    | '/_authenticated/settings/profile'
     | '/_authenticated/settings/roles'
+    | '/_authenticated/settings/skills'
+    | '/_authenticated/employer/'
+    | '/_authenticated/settings/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AuthRoute: typeof AuthRoute
+  JobsRoute: typeof JobsRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
 }
 
@@ -133,6 +372,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -156,11 +402,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/jobs/$jobId': {
+      id: '/jobs/$jobId'
+      path: '/$jobId'
+      fullPath: '/jobs/$jobId'
+      preLoaderRoute: typeof JobsJobIdRouteImport
+      parentRoute: typeof JobsRoute
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/quiz': {
+      id: '/_authenticated/quiz'
+      path: '/quiz'
+      fullPath: '/quiz'
+      preLoaderRoute: typeof AuthenticatedQuizRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/profile': {
       id: '/_authenticated/profile'
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/employer': {
+      id: '/_authenticated/employer'
+      path: '/employer'
+      fullPath: '/employer'
+      preLoaderRoute: typeof AuthenticatedEmployerRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/dashboard': {
@@ -170,6 +444,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/applications': {
+      id: '/_authenticated/applications'
+      path: '/applications'
+      fullPath: '/applications'
+      preLoaderRoute: typeof AuthenticatedApplicationsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/advisor': {
       id: '/_authenticated/advisor'
       path: '/advisor'
@@ -177,38 +458,197 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdvisorRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/settings/': {
+      id: '/_authenticated/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/employer/': {
+      id: '/_authenticated/employer/'
+      path: '/'
+      fullPath: '/employer/'
+      preLoaderRoute: typeof AuthenticatedEmployerIndexRouteImport
+      parentRoute: typeof AuthenticatedEmployerRoute
+    }
+    '/_authenticated/settings/skills': {
+      id: '/_authenticated/settings/skills'
+      path: '/skills'
+      fullPath: '/settings/skills'
+      preLoaderRoute: typeof AuthenticatedSettingsSkillsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
     '/_authenticated/settings/roles': {
       id: '/_authenticated/settings/roles'
-      path: '/settings/roles'
+      path: '/roles'
       fullPath: '/settings/roles'
       preLoaderRoute: typeof AuthenticatedSettingsRolesRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/profile': {
+      id: '/_authenticated/settings/profile'
+      path: '/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof AuthenticatedSettingsProfileRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/portfolio': {
+      id: '/_authenticated/settings/portfolio'
+      path: '/portfolio'
+      fullPath: '/settings/portfolio'
+      preLoaderRoute: typeof AuthenticatedSettingsPortfolioRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/languages': {
+      id: '/_authenticated/settings/languages'
+      path: '/languages'
+      fullPath: '/settings/languages'
+      preLoaderRoute: typeof AuthenticatedSettingsLanguagesRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/interests': {
+      id: '/_authenticated/settings/interests'
+      path: '/interests'
+      fullPath: '/settings/interests'
+      preLoaderRoute: typeof AuthenticatedSettingsInterestsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/experience': {
+      id: '/_authenticated/settings/experience'
+      path: '/experience'
+      fullPath: '/settings/experience'
+      preLoaderRoute: typeof AuthenticatedSettingsExperienceRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/education': {
+      id: '/_authenticated/settings/education'
+      path: '/education'
+      fullPath: '/settings/education'
+      preLoaderRoute: typeof AuthenticatedSettingsEducationRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/settings/certifications': {
+      id: '/_authenticated/settings/certifications'
+      path: '/certifications'
+      fullPath: '/settings/certifications'
+      preLoaderRoute: typeof AuthenticatedSettingsCertificationsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
+    '/_authenticated/employer/jobs': {
+      id: '/_authenticated/employer/jobs'
+      path: '/jobs'
+      fullPath: '/employer/jobs'
+      preLoaderRoute: typeof AuthenticatedEmployerJobsRouteImport
+      parentRoute: typeof AuthenticatedEmployerRoute
+    }
+    '/_authenticated/employer/company': {
+      id: '/_authenticated/employer/company'
+      path: '/company'
+      fullPath: '/employer/company'
+      preLoaderRoute: typeof AuthenticatedEmployerCompanyRouteImport
+      parentRoute: typeof AuthenticatedEmployerRoute
+    }
+    '/_authenticated/employer/applicants': {
+      id: '/_authenticated/employer/applicants'
+      path: '/applicants'
+      fullPath: '/employer/applicants'
+      preLoaderRoute: typeof AuthenticatedEmployerApplicantsRouteImport
+      parentRoute: typeof AuthenticatedEmployerRoute
     }
   }
 }
 
+interface AuthenticatedEmployerRouteChildren {
+  AuthenticatedEmployerApplicantsRoute: typeof AuthenticatedEmployerApplicantsRoute
+  AuthenticatedEmployerCompanyRoute: typeof AuthenticatedEmployerCompanyRoute
+  AuthenticatedEmployerJobsRoute: typeof AuthenticatedEmployerJobsRoute
+  AuthenticatedEmployerIndexRoute: typeof AuthenticatedEmployerIndexRoute
+}
+
+const AuthenticatedEmployerRouteChildren: AuthenticatedEmployerRouteChildren = {
+  AuthenticatedEmployerApplicantsRoute: AuthenticatedEmployerApplicantsRoute,
+  AuthenticatedEmployerCompanyRoute: AuthenticatedEmployerCompanyRoute,
+  AuthenticatedEmployerJobsRoute: AuthenticatedEmployerJobsRoute,
+  AuthenticatedEmployerIndexRoute: AuthenticatedEmployerIndexRoute,
+}
+
+const AuthenticatedEmployerRouteWithChildren =
+  AuthenticatedEmployerRoute._addFileChildren(
+    AuthenticatedEmployerRouteChildren,
+  )
+
+interface AuthenticatedSettingsRouteChildren {
+  AuthenticatedSettingsCertificationsRoute: typeof AuthenticatedSettingsCertificationsRoute
+  AuthenticatedSettingsEducationRoute: typeof AuthenticatedSettingsEducationRoute
+  AuthenticatedSettingsExperienceRoute: typeof AuthenticatedSettingsExperienceRoute
+  AuthenticatedSettingsInterestsRoute: typeof AuthenticatedSettingsInterestsRoute
+  AuthenticatedSettingsLanguagesRoute: typeof AuthenticatedSettingsLanguagesRoute
+  AuthenticatedSettingsPortfolioRoute: typeof AuthenticatedSettingsPortfolioRoute
+  AuthenticatedSettingsProfileRoute: typeof AuthenticatedSettingsProfileRoute
+  AuthenticatedSettingsRolesRoute: typeof AuthenticatedSettingsRolesRoute
+  AuthenticatedSettingsSkillsRoute: typeof AuthenticatedSettingsSkillsRoute
+  AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
+}
+
+const AuthenticatedSettingsRouteChildren: AuthenticatedSettingsRouteChildren = {
+  AuthenticatedSettingsCertificationsRoute:
+    AuthenticatedSettingsCertificationsRoute,
+  AuthenticatedSettingsEducationRoute: AuthenticatedSettingsEducationRoute,
+  AuthenticatedSettingsExperienceRoute: AuthenticatedSettingsExperienceRoute,
+  AuthenticatedSettingsInterestsRoute: AuthenticatedSettingsInterestsRoute,
+  AuthenticatedSettingsLanguagesRoute: AuthenticatedSettingsLanguagesRoute,
+  AuthenticatedSettingsPortfolioRoute: AuthenticatedSettingsPortfolioRoute,
+  AuthenticatedSettingsProfileRoute: AuthenticatedSettingsProfileRoute,
+  AuthenticatedSettingsRolesRoute: AuthenticatedSettingsRolesRoute,
+  AuthenticatedSettingsSkillsRoute: AuthenticatedSettingsSkillsRoute,
+  AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
+}
+
+const AuthenticatedSettingsRouteWithChildren =
+  AuthenticatedSettingsRoute._addFileChildren(
+    AuthenticatedSettingsRouteChildren,
+  )
+
 interface AuthenticatedRouteChildren {
   AuthenticatedAdvisorRoute: typeof AuthenticatedAdvisorRoute
+  AuthenticatedApplicationsRoute: typeof AuthenticatedApplicationsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedEmployerRoute: typeof AuthenticatedEmployerRouteWithChildren
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
-  AuthenticatedSettingsRolesRoute: typeof AuthenticatedSettingsRolesRoute
+  AuthenticatedQuizRoute: typeof AuthenticatedQuizRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRouteWithChildren
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedAdvisorRoute: AuthenticatedAdvisorRoute,
+  AuthenticatedApplicationsRoute: AuthenticatedApplicationsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedEmployerRoute: AuthenticatedEmployerRouteWithChildren,
   AuthenticatedProfileRoute: AuthenticatedProfileRoute,
-  AuthenticatedSettingsRolesRoute: AuthenticatedSettingsRolesRoute,
+  AuthenticatedQuizRoute: AuthenticatedQuizRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRouteWithChildren,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
+interface JobsRouteChildren {
+  JobsJobIdRoute: typeof JobsJobIdRoute
+}
+
+const JobsRouteChildren: JobsRouteChildren = {
+  JobsJobIdRoute: JobsJobIdRoute,
+}
+
+const JobsRouteWithChildren = JobsRoute._addFileChildren(JobsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AuthRoute: AuthRoute,
+  JobsRoute: JobsRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
