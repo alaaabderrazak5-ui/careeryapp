@@ -18,6 +18,7 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedAdvisorRouteImport } from './routes/_authenticated/advisor'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedSettingsSkillsRouteImport } from './routes/_authenticated/settings/skills'
 import { Route as AuthenticatedSettingsRolesRouteImport } from './routes/_authenticated/settings/roles'
 import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
 
@@ -66,6 +67,12 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRoute,
   } as any)
+const AuthenticatedSettingsSkillsRoute =
+  AuthenticatedSettingsSkillsRouteImport.update({
+    id: '/skills',
+    path: '/skills',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
 const AuthenticatedSettingsRolesRoute =
   AuthenticatedSettingsRolesRouteImport.update({
     id: '/roles',
@@ -89,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
+  '/settings/skills': typeof AuthenticatedSettingsSkillsRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +108,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
+  '/settings/skills': typeof AuthenticatedSettingsSkillsRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -114,6 +123,7 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/_authenticated/settings/roles': typeof AuthenticatedSettingsRolesRoute
+  '/_authenticated/settings/skills': typeof AuthenticatedSettingsSkillsRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/settings/profile'
     | '/settings/roles'
+    | '/settings/skills'
     | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/settings/profile'
     | '/settings/roles'
+    | '/settings/skills'
     | '/settings'
   id:
     | '__root__'
@@ -152,6 +164,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/_authenticated/settings/profile'
     | '/_authenticated/settings/roles'
+    | '/_authenticated/settings/skills'
     | '/_authenticated/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -227,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRoute
     }
+    '/_authenticated/settings/skills': {
+      id: '/_authenticated/settings/skills'
+      path: '/skills'
+      fullPath: '/settings/skills'
+      preLoaderRoute: typeof AuthenticatedSettingsSkillsRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
     '/_authenticated/settings/roles': {
       id: '/_authenticated/settings/roles'
       path: '/roles'
@@ -247,12 +267,14 @@ declare module '@tanstack/react-router' {
 interface AuthenticatedSettingsRouteChildren {
   AuthenticatedSettingsProfileRoute: typeof AuthenticatedSettingsProfileRoute
   AuthenticatedSettingsRolesRoute: typeof AuthenticatedSettingsRolesRoute
+  AuthenticatedSettingsSkillsRoute: typeof AuthenticatedSettingsSkillsRoute
   AuthenticatedSettingsIndexRoute: typeof AuthenticatedSettingsIndexRoute
 }
 
 const AuthenticatedSettingsRouteChildren: AuthenticatedSettingsRouteChildren = {
   AuthenticatedSettingsProfileRoute: AuthenticatedSettingsProfileRoute,
   AuthenticatedSettingsRolesRoute: AuthenticatedSettingsRolesRoute,
+  AuthenticatedSettingsSkillsRoute: AuthenticatedSettingsSkillsRoute,
   AuthenticatedSettingsIndexRoute: AuthenticatedSettingsIndexRoute,
 }
 
@@ -288,3 +310,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
