@@ -35,6 +35,7 @@ import { Route as AuthenticatedSettingsEducationRouteImport } from './routes/_au
 import { Route as AuthenticatedSettingsCertificationsRouteImport } from './routes/_authenticated/settings/certifications'
 import { Route as AuthenticatedEmployerJobsRouteImport } from './routes/_authenticated/employer/jobs'
 import { Route as AuthenticatedEmployerCompanyRouteImport } from './routes/_authenticated/employer/company'
+import { Route as AuthenticatedEmployerApplicantsRouteImport } from './routes/_authenticated/employer/applicants'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -179,6 +180,12 @@ const AuthenticatedEmployerCompanyRoute =
     path: '/company',
     getParentRoute: () => AuthenticatedEmployerRoute,
   } as any)
+const AuthenticatedEmployerApplicantsRoute =
+  AuthenticatedEmployerApplicantsRouteImport.update({
+    id: '/applicants',
+    path: '/applicants',
+    getParentRoute: () => AuthenticatedEmployerRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -193,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/quiz': typeof AuthenticatedQuizRoute
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/jobs/$jobId': typeof JobsJobIdRoute
+  '/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
   '/employer/company': typeof AuthenticatedEmployerCompanyRoute
   '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
   '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
@@ -218,6 +226,7 @@ export interface FileRoutesByTo {
   '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
+  '/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
   '/employer/company': typeof AuthenticatedEmployerCompanyRoute
   '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
   '/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
@@ -247,6 +256,7 @@ export interface FileRoutesById {
   '/_authenticated/quiz': typeof AuthenticatedQuizRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
   '/jobs/$jobId': typeof JobsJobIdRoute
+  '/_authenticated/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
   '/_authenticated/employer/company': typeof AuthenticatedEmployerCompanyRoute
   '/_authenticated/employer/jobs': typeof AuthenticatedEmployerJobsRoute
   '/_authenticated/settings/certifications': typeof AuthenticatedSettingsCertificationsRoute
@@ -276,6 +286,7 @@ export interface FileRouteTypes {
     | '/quiz'
     | '/settings'
     | '/jobs/$jobId'
+    | '/employer/applicants'
     | '/employer/company'
     | '/employer/jobs'
     | '/settings/certifications'
@@ -301,6 +312,7 @@ export interface FileRouteTypes {
     | '/profile'
     | '/quiz'
     | '/jobs/$jobId'
+    | '/employer/applicants'
     | '/employer/company'
     | '/employer/jobs'
     | '/settings/certifications'
@@ -329,6 +341,7 @@ export interface FileRouteTypes {
     | '/_authenticated/quiz'
     | '/_authenticated/settings'
     | '/jobs/$jobId'
+    | '/_authenticated/employer/applicants'
     | '/_authenticated/employer/company'
     | '/_authenticated/employer/jobs'
     | '/_authenticated/settings/certifications'
@@ -536,16 +549,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedEmployerCompanyRouteImport
       parentRoute: typeof AuthenticatedEmployerRoute
     }
+    '/_authenticated/employer/applicants': {
+      id: '/_authenticated/employer/applicants'
+      path: '/applicants'
+      fullPath: '/employer/applicants'
+      preLoaderRoute: typeof AuthenticatedEmployerApplicantsRouteImport
+      parentRoute: typeof AuthenticatedEmployerRoute
+    }
   }
 }
 
 interface AuthenticatedEmployerRouteChildren {
+  AuthenticatedEmployerApplicantsRoute: typeof AuthenticatedEmployerApplicantsRoute
   AuthenticatedEmployerCompanyRoute: typeof AuthenticatedEmployerCompanyRoute
   AuthenticatedEmployerJobsRoute: typeof AuthenticatedEmployerJobsRoute
   AuthenticatedEmployerIndexRoute: typeof AuthenticatedEmployerIndexRoute
 }
 
 const AuthenticatedEmployerRouteChildren: AuthenticatedEmployerRouteChildren = {
+  AuthenticatedEmployerApplicantsRoute: AuthenticatedEmployerApplicantsRoute,
   AuthenticatedEmployerCompanyRoute: AuthenticatedEmployerCompanyRoute,
   AuthenticatedEmployerJobsRoute: AuthenticatedEmployerJobsRoute,
   AuthenticatedEmployerIndexRoute: AuthenticatedEmployerIndexRoute,
