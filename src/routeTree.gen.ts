@@ -21,6 +21,7 @@ import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedSettingsSkillsRouteImport } from './routes/_authenticated/settings/skills'
 import { Route as AuthenticatedSettingsRolesRouteImport } from './routes/_authenticated/settings/roles'
 import { Route as AuthenticatedSettingsProfileRouteImport } from './routes/_authenticated/settings/profile'
+import { Route as AuthenticatedSettingsPortfolioRouteImport } from './routes/_authenticated/settings/portfolio'
 import { Route as AuthenticatedSettingsLanguagesRouteImport } from './routes/_authenticated/settings/languages'
 import { Route as AuthenticatedSettingsInterestsRouteImport } from './routes/_authenticated/settings/interests'
 import { Route as AuthenticatedSettingsExperienceRouteImport } from './routes/_authenticated/settings/experience'
@@ -90,6 +91,12 @@ const AuthenticatedSettingsProfileRoute =
     path: '/profile',
     getParentRoute: () => AuthenticatedSettingsRoute,
   } as any)
+const AuthenticatedSettingsPortfolioRoute =
+  AuthenticatedSettingsPortfolioRouteImport.update({
+    id: '/portfolio',
+    path: '/portfolio',
+    getParentRoute: () => AuthenticatedSettingsRoute,
+  } as any)
 const AuthenticatedSettingsLanguagesRoute =
   AuthenticatedSettingsLanguagesRouteImport.update({
     id: '/languages',
@@ -134,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
   '/settings/interests': typeof AuthenticatedSettingsInterestsRoute
   '/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
+  '/settings/portfolio': typeof AuthenticatedSettingsPortfolioRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
   '/settings/skills': typeof AuthenticatedSettingsSkillsRoute
@@ -151,6 +159,7 @@ export interface FileRoutesByTo {
   '/settings/experience': typeof AuthenticatedSettingsExperienceRoute
   '/settings/interests': typeof AuthenticatedSettingsInterestsRoute
   '/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
+  '/settings/portfolio': typeof AuthenticatedSettingsPortfolioRoute
   '/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/settings/roles': typeof AuthenticatedSettingsRolesRoute
   '/settings/skills': typeof AuthenticatedSettingsSkillsRoute
@@ -171,6 +180,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/experience': typeof AuthenticatedSettingsExperienceRoute
   '/_authenticated/settings/interests': typeof AuthenticatedSettingsInterestsRoute
   '/_authenticated/settings/languages': typeof AuthenticatedSettingsLanguagesRoute
+  '/_authenticated/settings/portfolio': typeof AuthenticatedSettingsPortfolioRoute
   '/_authenticated/settings/profile': typeof AuthenticatedSettingsProfileRoute
   '/_authenticated/settings/roles': typeof AuthenticatedSettingsRolesRoute
   '/_authenticated/settings/skills': typeof AuthenticatedSettingsSkillsRoute
@@ -191,6 +201,7 @@ export interface FileRouteTypes {
     | '/settings/experience'
     | '/settings/interests'
     | '/settings/languages'
+    | '/settings/portfolio'
     | '/settings/profile'
     | '/settings/roles'
     | '/settings/skills'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/settings/experience'
     | '/settings/interests'
     | '/settings/languages'
+    | '/settings/portfolio'
     | '/settings/profile'
     | '/settings/roles'
     | '/settings/skills'
@@ -227,6 +239,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/experience'
     | '/_authenticated/settings/interests'
     | '/_authenticated/settings/languages'
+    | '/_authenticated/settings/portfolio'
     | '/_authenticated/settings/profile'
     | '/_authenticated/settings/roles'
     | '/_authenticated/settings/skills'
@@ -326,6 +339,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsProfileRouteImport
       parentRoute: typeof AuthenticatedSettingsRoute
     }
+    '/_authenticated/settings/portfolio': {
+      id: '/_authenticated/settings/portfolio'
+      path: '/portfolio'
+      fullPath: '/settings/portfolio'
+      preLoaderRoute: typeof AuthenticatedSettingsPortfolioRouteImport
+      parentRoute: typeof AuthenticatedSettingsRoute
+    }
     '/_authenticated/settings/languages': {
       id: '/_authenticated/settings/languages'
       path: '/languages'
@@ -370,6 +390,7 @@ interface AuthenticatedSettingsRouteChildren {
   AuthenticatedSettingsExperienceRoute: typeof AuthenticatedSettingsExperienceRoute
   AuthenticatedSettingsInterestsRoute: typeof AuthenticatedSettingsInterestsRoute
   AuthenticatedSettingsLanguagesRoute: typeof AuthenticatedSettingsLanguagesRoute
+  AuthenticatedSettingsPortfolioRoute: typeof AuthenticatedSettingsPortfolioRoute
   AuthenticatedSettingsProfileRoute: typeof AuthenticatedSettingsProfileRoute
   AuthenticatedSettingsRolesRoute: typeof AuthenticatedSettingsRolesRoute
   AuthenticatedSettingsSkillsRoute: typeof AuthenticatedSettingsSkillsRoute
@@ -383,6 +404,7 @@ const AuthenticatedSettingsRouteChildren: AuthenticatedSettingsRouteChildren = {
   AuthenticatedSettingsExperienceRoute: AuthenticatedSettingsExperienceRoute,
   AuthenticatedSettingsInterestsRoute: AuthenticatedSettingsInterestsRoute,
   AuthenticatedSettingsLanguagesRoute: AuthenticatedSettingsLanguagesRoute,
+  AuthenticatedSettingsPortfolioRoute: AuthenticatedSettingsPortfolioRoute,
   AuthenticatedSettingsProfileRoute: AuthenticatedSettingsProfileRoute,
   AuthenticatedSettingsRolesRoute: AuthenticatedSettingsRolesRoute,
   AuthenticatedSettingsSkillsRoute: AuthenticatedSettingsSkillsRoute,
