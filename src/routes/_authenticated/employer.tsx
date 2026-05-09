@@ -3,12 +3,12 @@ import { Building2, Briefcase, Users } from "lucide-react";
 
 export const Route = createFileRoute("/_authenticated/employer")({ component: EmployerLayout });
 
-const NAV = [
+const NAV: { to: string; label: string; icon: typeof Building2; exact?: boolean }[] = [
   { to: "/employer", label: "Overview", icon: Building2, exact: true },
   { to: "/employer/company", label: "Company", icon: Building2 },
   { to: "/employer/jobs", label: "Jobs", icon: Briefcase },
   { to: "/employer/applicants", label: "Applicants", icon: Users },
-] as const;
+];
 
 function EmployerLayout() {
   const loc = useLocation();
