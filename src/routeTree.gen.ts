@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
@@ -32,6 +33,11 @@ import { Route as AuthenticatedSettingsCertificationsRouteImport } from './route
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsRoute = JobsRouteImport.update({
+  id: '/jobs',
+  path: '/jobs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -137,6 +143,7 @@ const AuthenticatedSettingsCertificationsRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/jobs': typeof JobsRoute
   '/onboarding': typeof OnboardingRoute
   '/advisor': typeof AuthenticatedAdvisorRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -157,6 +164,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
+  '/jobs': typeof JobsRoute
   '/onboarding': typeof OnboardingRoute
   '/advisor': typeof AuthenticatedAdvisorRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/auth': typeof AuthRoute
+  '/jobs': typeof JobsRoute
   '/onboarding': typeof OnboardingRoute
   '/_authenticated/advisor': typeof AuthenticatedAdvisorRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
@@ -200,6 +209,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/auth'
+    | '/jobs'
     | '/onboarding'
     | '/advisor'
     | '/dashboard'
@@ -220,6 +230,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/auth'
+    | '/jobs'
     | '/onboarding'
     | '/advisor'
     | '/dashboard'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/'
     | '/_authenticated'
     | '/auth'
+    | '/jobs'
     | '/onboarding'
     | '/_authenticated/advisor'
     | '/_authenticated/dashboard'
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
   AuthRoute: typeof AuthRoute
+  JobsRoute: typeof JobsRoute
   OnboardingRoute: typeof OnboardingRoute
 }
 
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs': {
+      id: '/jobs'
+      path: '/jobs'
+      fullPath: '/jobs'
+      preLoaderRoute: typeof JobsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -459,6 +479,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
   AuthRoute: AuthRoute,
+  JobsRoute: JobsRoute,
   OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
