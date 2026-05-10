@@ -21,7 +21,7 @@ function BrandingAdmin() {
 
   const save = async () => {
     setSaving(true);
-    const { error } = await supabase.from("cms_settings").upsert({ key: "branding", value: b as object });
+    const { error } = await supabase.from("cms_settings").upsert({ key: "branding", value: b as never });
     setSaving(false);
     if (error) toast.error(error.message); else toast.success("Branding saved");
   };
@@ -35,7 +35,7 @@ function BrandingAdmin() {
     const { data } = supabase.storage.from("cms-media").getPublicUrl(path);
     const next = { ...b, logo_url: data.publicUrl };
     setB(next);
-    await supabase.from("cms_settings").upsert({ key: "branding", value: next as object });
+    await supabase.from("cms_settings").upsert({ key: "branding", value: next as never });
     setUploading(false);
     toast.success("Logo updated");
   };
@@ -56,7 +56,7 @@ function BrandingAdmin() {
           <div className="flex flex-col gap-2">
             <input ref={fileRef} type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp" className="hidden" onChange={(e) => e.target.files?.[0] && onFile(e.target.files[0])} />
             <button onClick={() => fileRef.current?.click()} disabled={uploading} className="rounded-full bg-foreground px-4 py-2 text-sm font-semibold text-background disabled:opacity-50">{uploading ? "Uploading…" : b.logo_url ? "Replace logo" : "Upload logo"}</button>
-            {b.logo_url && <button onClick={async () => { const next = { ...b, logo_url: null }; setB(next); await supabase.from("cms_settings").upsert({ key: "branding", value: next as object }); toast.success("Logo removed"); }} className="text-xs text-muted-foreground hover:text-foreground">Remove logo</button>}
+            {b.logo_url && <button onClick={async () => { const next = { ...b, logo_url: null }; setB(next); await supabase.from("cms_settings").upsert({ key: "branding", value: next as never }); toast.success("Logo removed"); }} className="text-xs text-muted-foreground hover:text-foreground">Remove logo</button>}
           </div>
         </div>
       </div>
