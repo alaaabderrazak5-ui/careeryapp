@@ -55,7 +55,7 @@ function ContentAdmin() {
     loadBlocks(activeId);
   };
   const updateBlock = async (id: string, patch: Partial<Block>) => {
-    await supabase.from("cms_blocks").update(patch).eq("id", id);
+    await supabase.from("cms_blocks").update(patch as never).eq("id", id);
     if (activeId) loadBlocks(activeId);
   };
   const delBlock = async (id: string) => { await supabase.from("cms_blocks").delete().eq("id", id); if (activeId) loadBlocks(activeId); };
