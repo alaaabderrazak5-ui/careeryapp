@@ -112,6 +112,60 @@ export type Database = {
         }
         Relationships: []
       }
+      career_paths: {
+        Row: {
+          category: string | null
+          certifications: string[] | null
+          created_at: string
+          future_opportunities: string[] | null
+          id: string
+          is_active: boolean
+          position: number
+          required_skills: string[] | null
+          roadmap: Json | null
+          score_keywords: Json | null
+          short_description: string | null
+          slug: string
+          title: string
+          updated_at: string
+          why_match: string | null
+        }
+        Insert: {
+          category?: string | null
+          certifications?: string[] | null
+          created_at?: string
+          future_opportunities?: string[] | null
+          id?: string
+          is_active?: boolean
+          position?: number
+          required_skills?: string[] | null
+          roadmap?: Json | null
+          score_keywords?: Json | null
+          short_description?: string | null
+          slug: string
+          title: string
+          updated_at?: string
+          why_match?: string | null
+        }
+        Update: {
+          category?: string | null
+          certifications?: string[] | null
+          created_at?: string
+          future_opportunities?: string[] | null
+          id?: string
+          is_active?: boolean
+          position?: number
+          required_skills?: string[] | null
+          roadmap?: Json | null
+          score_keywords?: Json | null
+          short_description?: string | null
+          slug?: string
+          title?: string
+          updated_at?: string
+          why_match?: string | null
+        }
+        Relationships: []
+      }
       career_quiz_results: {
         Row: {
           answers: Json
@@ -700,6 +754,45 @@ export type Database = {
           salary_currency?: string | null
           salary_max?: number | null
           salary_min?: number | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_questions: {
+        Row: {
+          category: string | null
+          created_at: string
+          helper: string | null
+          id: string
+          is_active: boolean
+          is_multiselect: boolean
+          options: Json
+          position: number
+          question: string
+          updated_at: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          helper?: string | null
+          id?: string
+          is_active?: boolean
+          is_multiselect?: boolean
+          options?: Json
+          position?: number
+          question: string
+          updated_at?: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          helper?: string | null
+          id?: string
+          is_active?: boolean
+          is_multiselect?: boolean
+          options?: Json
+          position?: number
+          question?: string
           updated_at?: string
         }
         Relationships: []
