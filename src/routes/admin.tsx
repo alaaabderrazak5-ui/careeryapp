@@ -11,7 +11,8 @@ export const Route = createFileRoute("/admin")({
   },
 });
 
-const NAV = [
+type NavLink = { to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean };
+const NAV: NavLink[] = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard, exact: true },
   { to: "/admin/branding", label: "Logo & Branding", icon: ImageIcon },
   { to: "/admin/navigation", label: "Navigation", icon: Menu },
@@ -19,7 +20,7 @@ const NAV = [
   { to: "/admin/users", label: "Users & Roles", icon: Users },
   { to: "/admin/quiz", label: "Quiz Editor", icon: ListChecks },
   { to: "/admin/careers", label: "Career Recommendations", icon: Sparkles },
-] as const;
+];
 
 function AdminLayout() {
   const { user, hasRole, loading } = useAuth();

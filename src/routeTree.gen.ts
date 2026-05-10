@@ -12,9 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as JobsRouteImport } from './routes/jobs'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as JobsJobIdRouteImport } from './routes/jobs.$jobId'
+import { Route as AdminUsersRouteImport } from './routes/admin.users'
+import { Route as AdminQuizRouteImport } from './routes/admin.quiz'
+import { Route as AdminNavigationRouteImport } from './routes/admin.navigation'
+import { Route as AdminContentRouteImport } from './routes/admin.content'
+import { Route as AdminCareersRouteImport } from './routes/admin.careers'
+import { Route as AdminBrandingRouteImport } from './routes/admin.branding'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedQuizRouteImport } from './routes/_authenticated/quiz'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
@@ -52,6 +60,11 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -61,10 +74,45 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 const JobsJobIdRoute = JobsJobIdRouteImport.update({
   id: '/$jobId',
   path: '/$jobId',
   getParentRoute: () => JobsRoute,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminQuizRoute = AdminQuizRouteImport.update({
+  id: '/quiz',
+  path: '/quiz',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminNavigationRoute = AdminNavigationRouteImport.update({
+  id: '/navigation',
+  path: '/navigation',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminContentRoute = AdminContentRouteImport.update({
+  id: '/content',
+  path: '/content',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminCareersRoute = AdminCareersRouteImport.update({
+  id: '/careers',
+  path: '/careers',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminBrandingRoute = AdminBrandingRouteImport.update({
+  id: '/branding',
+  path: '/branding',
+  getParentRoute: () => AdminRoute,
 } as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
@@ -189,6 +237,7 @@ const AuthenticatedEmployerApplicantsRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/auth': typeof AuthRoute
   '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
@@ -199,7 +248,14 @@ export interface FileRoutesByFullPath {
   '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
   '/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/admin/branding': typeof AdminBrandingRoute
+  '/admin/careers': typeof AdminCareersRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/navigation': typeof AdminNavigationRoute
+  '/admin/quiz': typeof AdminQuizRoute
+  '/admin/users': typeof AdminUsersRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
   '/employer/company': typeof AuthenticatedEmployerCompanyRoute
   '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
@@ -225,7 +281,14 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profile': typeof AuthenticatedProfileRoute
   '/quiz': typeof AuthenticatedQuizRoute
+  '/admin/branding': typeof AdminBrandingRoute
+  '/admin/careers': typeof AdminCareersRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/navigation': typeof AdminNavigationRoute
+  '/admin/quiz': typeof AdminQuizRoute
+  '/admin/users': typeof AdminUsersRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
+  '/admin': typeof AdminIndexRoute
   '/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
   '/employer/company': typeof AuthenticatedEmployerCompanyRoute
   '/employer/jobs': typeof AuthenticatedEmployerJobsRoute
@@ -245,6 +308,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/admin': typeof AdminRouteWithChildren
   '/auth': typeof AuthRoute
   '/jobs': typeof JobsRouteWithChildren
   '/onboarding': typeof OnboardingRoute
@@ -255,7 +319,14 @@ export interface FileRoutesById {
   '/_authenticated/profile': typeof AuthenticatedProfileRoute
   '/_authenticated/quiz': typeof AuthenticatedQuizRoute
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteWithChildren
+  '/admin/branding': typeof AdminBrandingRoute
+  '/admin/careers': typeof AdminCareersRoute
+  '/admin/content': typeof AdminContentRoute
+  '/admin/navigation': typeof AdminNavigationRoute
+  '/admin/quiz': typeof AdminQuizRoute
+  '/admin/users': typeof AdminUsersRoute
   '/jobs/$jobId': typeof JobsJobIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/_authenticated/employer/applicants': typeof AuthenticatedEmployerApplicantsRoute
   '/_authenticated/employer/company': typeof AuthenticatedEmployerCompanyRoute
   '/_authenticated/employer/jobs': typeof AuthenticatedEmployerJobsRoute
@@ -275,6 +346,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/auth'
     | '/jobs'
     | '/onboarding'
@@ -285,7 +357,14 @@ export interface FileRouteTypes {
     | '/profile'
     | '/quiz'
     | '/settings'
+    | '/admin/branding'
+    | '/admin/careers'
+    | '/admin/content'
+    | '/admin/navigation'
+    | '/admin/quiz'
+    | '/admin/users'
     | '/jobs/$jobId'
+    | '/admin/'
     | '/employer/applicants'
     | '/employer/company'
     | '/employer/jobs'
@@ -311,7 +390,14 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/profile'
     | '/quiz'
+    | '/admin/branding'
+    | '/admin/careers'
+    | '/admin/content'
+    | '/admin/navigation'
+    | '/admin/quiz'
+    | '/admin/users'
     | '/jobs/$jobId'
+    | '/admin'
     | '/employer/applicants'
     | '/employer/company'
     | '/employer/jobs'
@@ -330,6 +416,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/admin'
     | '/auth'
     | '/jobs'
     | '/onboarding'
@@ -340,7 +427,14 @@ export interface FileRouteTypes {
     | '/_authenticated/profile'
     | '/_authenticated/quiz'
     | '/_authenticated/settings'
+    | '/admin/branding'
+    | '/admin/careers'
+    | '/admin/content'
+    | '/admin/navigation'
+    | '/admin/quiz'
+    | '/admin/users'
     | '/jobs/$jobId'
+    | '/admin/'
     | '/_authenticated/employer/applicants'
     | '/_authenticated/employer/company'
     | '/_authenticated/employer/jobs'
@@ -360,6 +454,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AdminRoute: typeof AdminRouteWithChildren
   AuthRoute: typeof AuthRoute
   JobsRoute: typeof JobsRouteWithChildren
   OnboardingRoute: typeof OnboardingRoute
@@ -388,6 +483,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -402,12 +504,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/jobs/$jobId': {
       id: '/jobs/$jobId'
       path: '/$jobId'
       fullPath: '/jobs/$jobId'
       preLoaderRoute: typeof JobsJobIdRouteImport
       parentRoute: typeof JobsRoute
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/quiz': {
+      id: '/admin/quiz'
+      path: '/quiz'
+      fullPath: '/admin/quiz'
+      preLoaderRoute: typeof AdminQuizRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/navigation': {
+      id: '/admin/navigation'
+      path: '/navigation'
+      fullPath: '/admin/navigation'
+      preLoaderRoute: typeof AdminNavigationRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/content': {
+      id: '/admin/content'
+      path: '/content'
+      fullPath: '/admin/content'
+      preLoaderRoute: typeof AdminContentRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/careers': {
+      id: '/admin/careers'
+      path: '/careers'
+      fullPath: '/admin/careers'
+      preLoaderRoute: typeof AdminCareersRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/branding': {
+      id: '/admin/branding'
+      path: '/branding'
+      fullPath: '/admin/branding'
+      preLoaderRoute: typeof AdminBrandingRouteImport
+      parentRoute: typeof AdminRoute
     }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
@@ -634,6 +785,28 @@ const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
   AuthenticatedRouteChildren,
 )
 
+interface AdminRouteChildren {
+  AdminBrandingRoute: typeof AdminBrandingRoute
+  AdminCareersRoute: typeof AdminCareersRoute
+  AdminContentRoute: typeof AdminContentRoute
+  AdminNavigationRoute: typeof AdminNavigationRoute
+  AdminQuizRoute: typeof AdminQuizRoute
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminBrandingRoute: AdminBrandingRoute,
+  AdminCareersRoute: AdminCareersRoute,
+  AdminContentRoute: AdminContentRoute,
+  AdminNavigationRoute: AdminNavigationRoute,
+  AdminQuizRoute: AdminQuizRoute,
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
 interface JobsRouteChildren {
   JobsJobIdRoute: typeof JobsJobIdRoute
 }
@@ -647,6 +820,7 @@ const JobsRouteWithChildren = JobsRoute._addFileChildren(JobsRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AdminRoute: AdminRouteWithChildren,
   AuthRoute: AuthRoute,
   JobsRoute: JobsRouteWithChildren,
   OnboardingRoute: OnboardingRoute,
